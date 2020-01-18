@@ -1,0 +1,201 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "title": "Service products",
+      "description": "",
+      "version": "1.0"
+    },
+    "host": "https://api-nrenard.herokuapp.com/",
+    "produces": ["application/json"],
+    "paths": {
+      "/products": {
+        "get": {
+          "tags": ["/products"],
+          "summary": "Método para listar os produtos",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "price": {
+                      "type": "number"
+                    }
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Erro interno",
+              "examples": {
+                "application/json": "{ message: 'An error occurred on server.' }"
+              }
+            }
+          }
+        },
+        "post": {
+          "summary": "Cadastra um novo produto.",
+          "tags": ["/products"],
+          "description": "",
+          "parameters": [
+            {
+              "name": "name",
+              "in": "formData",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "description",
+              "in": "formData",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "price",
+              "in": "formData",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "price": {
+                    "type": "number"
+                  }
+                }
+              },
+              "examples": {
+                "application/json": "{ name: 'string', description: 'string', price: number }"
+              }
+            },
+            "500": {
+              "description": "Erro interno",
+              "examples": {
+                "application/json": "{ message: 'An error occurred on server.' }"
+              }
+            }
+          }
+        }
+      },
+      "/products/{id}": {
+        "get": {
+          "tags": ["/products"],
+          "summary": "Retorna o produto do id.",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "Se informado objectId.",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "price": {
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Erro interno",
+              "examples": {
+                "application/json": "{ message: 'An error occurred on server.' }"
+              }
+            }
+          }
+        },
+        "delete": {
+          "tags": ["/products"],
+          "summary": "Deleta o produto do id.",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "Se informado o objectId.",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "success": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "examples": {
+                "application/json": "{ message: 'Deletado com sucesso'}"
+              }
+            },
+            "500": {
+              "description": "Erro interno",
+              "examples": {
+                "application/json": "{ message: 'An error occurred on server.' }"
+              }
+            }
+          }
+        },
+        "put": {
+          "summary": "Atualiza o produto.",
+          "tags": ["/products"],
+          "description": "",
+          "parameters": [
+            {
+              "name": "name",
+              "in": "formData",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "description",
+              "in": "formData",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "price",
+              "in": "formData",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "success": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "An error occurred on server"
+            }
+          }
+        }
+      }
+    }
+  }
+  
