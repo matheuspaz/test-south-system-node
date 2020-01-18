@@ -1,18 +1,46 @@
 let express = require('express');
 let router = express.Router();
 let hasToken = require('../middleware/hasToken');
-let Product = require('../models/Product');
+let ProductService = require('../services/productsService');
 
-/* GET home page. */
 router.get('/', async function(req, res, next) {
-  const products = await Product.find();
-  return res.send(products);
+  try {
+    return res.status(200).send(await ProductService.search(req.query));
+  } catch (err) {
+    return res.status(500).json({message: 'An error occurred on server.'});
+  }
 });
 
-router.post('/create', hasToken, async function(req, res, next) {
+router.get('/:id', async function(req, res, next) {
   try {
-    const product = await Product.create(req.body);
-    return res.status(201).json(product);
+    return res.status(200).send(await ProductService.findById(req.params.id));
+  } catch (err) {
+    console.log(err);
+    
+    return res.status(500).json({message: 'An error occurred on server.'});
+  }
+});
+
+router.post('/', hasToken, async function(req, res, next) {
+  try {
+    return res.status(200).json(await ProductService.create(req.body));
+  } catch (err) {
+    return res.status(500).json({message: 'An error occurred on server.'});
+  }
+});
+
+router.put('/:id', hasToken, async function(req, res, next) {
+  try {
+    return res.status(200).json(await ProductService.update(req.params.id, req.body));
+  } catch (err) {
+    return res.status(500).json({message: 'An error occurred on server.'});
+  }
+});
+
+router.delete('/:id', hasToken, async function(req, res, next) {
+  try {
+    ProductService.delete(req.params.id);
+    return res.status(200).json({message: 'Deleted successful.'})
   } catch (err) {
     return res.status(500).json({message: 'An error occurred on server.'});
   }
