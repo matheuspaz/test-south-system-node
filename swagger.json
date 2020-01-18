@@ -5,7 +5,7 @@
       "description": "",
       "version": "1.0"
     },
-    "host": "https://api-nrenard.herokuapp.com/",
+    "host": "",
     "produces": ["application/json"],
     "paths": {
       "/products": {
