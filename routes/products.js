@@ -1,7 +1,7 @@
-let express = require('express');
-let router = express.Router();
-let hasToken = require('../middleware/hasToken');
-let ProductService = require('../services/productsService');
+const express = require('express');
+const router = express.Router();
+const hasToken = require('../middleware/hasToken');
+const ProductService = require('../services/productsService');
 
 router.get('/', async function(req, res, next) {
   try {

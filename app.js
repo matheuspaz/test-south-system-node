@@ -1,15 +1,15 @@
 require('dotenv').config();
-let express = require('express');
-let path = require('path');
-let cookieParser = require('cookie-parser');
-let logger = require('morgan');
-let mongoose = require('mongoose');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const mongoose = require('mongoose');
 
 mongoose.connect(process.env.DB_URL, {useNewUrlParser: true});
 
-let productsRouter = require('./routes/products');
+const productsRouter = require('./routes/products');
 
-let app = express();
+const app = express();
 
 app.use(logger('dev'));
 app.use(express.json());
