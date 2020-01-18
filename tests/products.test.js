@@ -1,6 +1,7 @@
 const request = require('supertest');
 const server = require('../app');
 const ProductService = require('../services/productsService');
+const Product = require('../models/Product')
 
 test('able to get products', async () => {
     const response = await request(server)
@@ -29,7 +30,7 @@ test('able to get products with paginate filters', async () => {
 });
 
 test('able to delete', async () => {
-    let product = await ProductService.create({
+    const product = await ProductService.create({
         name: 'Produto de teste 2',
         description: 'description de teste 2',
         price: 2.99
@@ -42,7 +43,7 @@ test('able to delete', async () => {
 });
 
 test('able to update', async () => {
-    let product = await ProductService.create({
+    const product = await ProductService.create({
         name: 'Produto de teste 3',
         description: 'description de teste 3',
         price: 3.99
@@ -60,7 +61,7 @@ test('able to update', async () => {
 });
 
 test('able to client view product', async () => {
-    let product = await ProductService.create({
+    const product = await ProductService.create({
         name: 'Produto de teste 5',
         description: 'description de teste 5',
         price: 3.99
@@ -70,4 +71,8 @@ test('able to client view product', async () => {
         .get(`/products/${product._id}`)
         .set('Authorization',  '123token987');
     expect(response.status).toBe(200);
+});
+
+afterAll(() => {
+    Product.collection.remove({description: new RegExp('test', 'i')});
 });
