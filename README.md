@@ -1,4 +1,4 @@
-#TESTE SOUTH SYSTEM
+## TESTE SOUTH SYSTEM
 
 - url de teste: https://test-south-system.herokuapp.com/.
 
@@ -22,3 +22,7 @@ token: `123token987`
 ```
 npm test
 ```
+
+## Documentação das rotas e campos para inserir na base
+
+- https://test-south-system.herokuapp.com/api-docs.
