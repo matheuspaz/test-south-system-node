@@ -3,7 +3,7 @@ const router = express.Router();
 const hasToken = require('../middleware/hasToken');
 const ProductService = require('../services/productsService');
 
-router.get('/', async function(req, res, next) {
+router.get('/', hasToken, async function(req, res, next) {
   try {
     return res.status(200).send(await ProductService.search(req.query));
   } catch (err) {
